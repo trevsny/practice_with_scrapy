@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- put load static for css page connection -->
+</head>
+<body>
+    <div id="header">
+        <h1>NOTAMs</h1>
+    </div>
+    <div id="search">
+        <form action="/apirequest" method="GET">
+            <input type="text" maxlength="4" placeholder="KLAX">
+            <input type="submit" value="Get NOTAMs">
+        </form>
+    </div>
+    <div id="result">
+        <table border="3">
+            <th>Runways</th>
+            <tr>
+                <form action="/new" method="POST">
+                    {% csrf_token %}
+                    <td><input name = "description">Runway 4 Closed</td>
+                    <td>
+                        <input type="submit" value="Add">
+                    </td>
+                </form>
+            </tr>    
+        </table>
+    </div>
+    <div id="myNotam">
+        <table border="3">
+            <th>Runways</th>
+            {% for myNotam in notams %}
+            <tr>
+                <form action="/delete" method="POST">
+                    {% csrf_token %}
+                    <td name = "desc">{{myNotam.description}}</td>
+                    <td>
+                        <input type="submit" value="Remove">
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}    
+        </table>
+    </div>
+
+    <div id="concert">
+        <form action="/find" method="GET">
+            {% csrf_token %}
+            <td><input name = "usana">USANA Amph</td>
+            <td>
+                <input type="submit" value="Find concerts">
+            </td>
+        </form>
+    </div>
+    
+</body>
+</html>
