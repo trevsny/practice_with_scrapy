@@ -11,8 +11,7 @@ import scrapy
 class ConcertItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-
     artist = scrapy.Field()
     month = scrapy.Field()
     day = scrapy.Field()
-    ticket_price = scrapy.Field()
+    ticket_link = scrapy.Field()
